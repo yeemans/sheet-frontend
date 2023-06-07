@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import {useNavigate} from "react-router-dom";
 import axios from "axios"
 
 function Register() { 
@@ -16,7 +16,7 @@ function Register() {
             // save cookie, then redirect to dashboard
             sessionStorage.setItem("sessionId", result["data"]["session"]);
             console.log(sessionStorage)
-            // navigate("/home");
+            navigate("/home");
         }
     }
 

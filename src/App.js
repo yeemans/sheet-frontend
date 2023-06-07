@@ -1,5 +1,6 @@
-import { Link, Routes, Route, useNavigate, BrowserRouter } from 'react-router-dom';
-import React, {useState} from "react";
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import React from "react";
+import Home from "./Components/Home";
 import Register from './Components/Register';
 import Login from './Components/Login';
 import './App.css';
@@ -10,6 +11,7 @@ function Root() {
     <div className="App">
       <div className="main-content">
         <Routes>
+          <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
