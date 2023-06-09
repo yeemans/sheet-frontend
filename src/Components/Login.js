@@ -1,10 +1,16 @@
-import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import React, {useState, useEffect} from 'react';
+import {useNavigate, useLocation} from "react-router-dom";
 import axios from "axios"
 
-function Login() { 
+function Login(props) { 
+    const location = useLocation();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(() => { 
+        console.log(location)
+        if ("state" in location && "error" in location.state) setErrorMessage(location.state.error)
+    }, [])
     async function sendLogIn() { 
         let result = await axios.post("http://localhost:5000/login", {
             username: document.getElementById("username").value,
@@ -22,7 +28,7 @@ function Login() {
         }
 
         // account not recognized 
-        setErrorMessage("Account not recognized.")
+        setErrorMessage(result["data"]["message"])
     }
 
     return( 
