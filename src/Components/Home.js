@@ -3,20 +3,6 @@ import axios from "axios"
 
 function Home() { 
     const [user, setUser] = useState("Guest");
-    const [file, setFile] = useState();
-
-    const handleFileChange = (e) => {
-        console.log("clicked")
-        if (e.target.files) {
-        setFile(e.target.files[0]);
-        }
-    };
-
-    const handleUploadClick = () => {
-        console.log("clicked")
-        if (!file) return;
-        console.log(file)
-    }
 
     useEffect(() => {
         console.log(("sessionId" in sessionStorage))
@@ -27,7 +13,6 @@ function Home() {
                 sessionId: sessionStorage["sessionId"]
             });
 
-            console.log(result)
             if (result["data"]["message"] === "success") { 
                 console.log('yes');
                 setUser(result["data"]["user"]);
@@ -42,12 +27,13 @@ function Home() {
     return(
         <div> 
             <h2>hi {user} </h2>
-            <div>{file && `${file.name} - ${file.type}`}</div>
 
-        
+            <form action="http://localhost:5000/upload-sheet" method="POST" encType="multipart/form-data">
+                Select image to upload:
+                <input type="file" name="sheet" id="sheet" />
+                <input type="submit" value="Upload Image" name="submit" />
+            </form>
 
-            <input type="file" id="newFile" onChange={(e) => handleFileChange(e)} />
-            <button onClick={() => handleUploadClick()}>Upload</button>
         </div>
     )
 }
