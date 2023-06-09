@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios"
 
 function Login() { 
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
     async function sendLogIn() { 
         let result = await axios.post("http://localhost:5000/login", {
             username: document.getElementById("username").value,
@@ -13,15 +14,20 @@ function Login() {
         console.log(result);
 
         if (result["data"]["message"] === "success") {
-            // save cookie, then redirect to dashboard
+            // save session, then redirect to dashboard
             sessionStorage.setItem("sessionId", result["data"]["session"]);
             console.log(sessionStorage)
             navigate("/home");
+            return;
         }
+
+        // account not recognized 
+        setErrorMessage("Account not recognized.")
     }
 
     return( 
         <div> 
+            <p>{errorMessage}</p>
             <h1>Login</h1>
             <label htmlFor="username">Username: </label>
             <input type="text" id="username"/>

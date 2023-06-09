@@ -3,6 +3,7 @@ import React from "react";
 import Home from "./Components/Home";
 import Register from './Components/Register';
 import Login from './Components/Login';
+import Upload from "./Components/Upload";
 import './App.css';
 
 
@@ -14,6 +15,7 @@ function Root() {
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </div>
     </div>
