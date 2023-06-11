@@ -12,10 +12,12 @@ function Root() {
     <div className="App">
       <div className="main-content">
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/upload-sheet" element={<Home />} />
         </Routes>
       </div>
     </div>

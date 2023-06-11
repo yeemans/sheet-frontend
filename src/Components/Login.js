@@ -9,7 +9,7 @@ function Login(props) {
 
     useEffect(() => { 
         console.log(location)
-        if ("state" in location && "error" in location.state) setErrorMessage(location.state.error)
+        if (location.state != null && "error" in location.state) setErrorMessage(location.state.error)
     }, [])
     async function sendLogIn() { 
         let result = await axios.post("http://localhost:5000/login", {

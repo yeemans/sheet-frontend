@@ -21,7 +21,6 @@ function Register() {
     }
 
     async function sendRegistration() { 
-        // TODO: implement login post request to api
         let result = await axios.post("http://localhost:5000/sign-up", {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value,

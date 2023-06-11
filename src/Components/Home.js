@@ -14,7 +14,7 @@ function Home() {
             });
 
             if (result["data"]["message"] === "success") { 
-                console.log('yes');
+                console.log(result["data"]["user"])
                 setUser(result["data"]["user"]);
             }
                 
