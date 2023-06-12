@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
 import axios from "axios"
+import Upload from "./Upload"
 
 function Home() { 
     const [user, setUser] = useState("Guest");
@@ -25,6 +26,7 @@ function Home() {
     return(
         <div> 
             <h2>hi {user} </h2>
+            <Upload />
         </div>
     )
 }

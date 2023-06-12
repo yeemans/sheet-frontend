@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios"
 
 function Upload() {
+    const [title, setTitle] = useState("");
     const [fileType, setFileType] = useState(""); 
     const [composer, setComposer] = useState("");
     const [instrument, setInstrument] = useState("");
@@ -61,6 +62,7 @@ function Upload() {
 
         let fileUrl = result["data"]["s3_url"]
         result = await axios.post(("http://localhost:5000/upload-sheet"), { 
+            "title": title,
             "sheet": fileUrl,
             "userId": userId,
             "composer": composer, 
@@ -77,7 +79,7 @@ function Upload() {
 
     function submitButton() { 
         if (fileType.type === "application/pdf")
-            return <input type="button" value="Submitasfhadsfjk" onClick = {() => submit()}/>
+            return <input type="button" value="Submit" onClick = {() => submit()}/>
         return 
     }
 
@@ -85,10 +87,15 @@ function Upload() {
         if (fileType.type !== "application/pdf") return 
         return(
             <div> 
+                <label htmlFor="title">Title</label>
+                <input type="text" id="title" value={title} onChange={e => setTitle(e.target.value)}></input>
+
                 <label htmlFor="composer">Composer</label>
                 <input type="text" id="composer" value={composer} onChange={e => setComposer(e.target.value)}></input>
+               
                 <label htmlFor="instrument">Instrument</label>
                 <input type="text" id="instrument" value={instrument} onChange={e => setInstrument(e.target.value)}></input>
+                
                 <label htmlFor="bpm">BPM</label>
                 <input type="number" id="bpm" value={bpm} onChange={e => setBpm(e.target.value)}></input>
             </div>

@@ -3,7 +3,6 @@ import React from "react";
 import Home from "./Components/Home";
 import Register from './Components/Register';
 import Login from './Components/Login';
-import Upload from "./Components/Upload";
 import Sheet from "./Components/Sheet";
 import './App.css';
 
@@ -17,7 +16,6 @@ function Root() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/upload" element={<Upload />} />
           <Route path="/sheet/:sheetId" element={<Sheet />} />
         </Routes>
       </div>
